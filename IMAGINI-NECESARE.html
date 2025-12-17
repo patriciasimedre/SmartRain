@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRain - Placeholder Images Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #2563eb;
+            text-align: center;
+        }
+        .info {
+            background: #e0f2fe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #0ea5e9;
+        }
+        .image-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .image-item {
+            border: 2px solid #e5e7eb;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+        .image-item h3 {
+            margin: 0 0 10px 0;
+            color: #1f2937;
+        }
+        .image-item p {
+            margin: 5px 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .download-link:hover {
+            background: #1d4ed8;
+        }
+        code {
+            background: #374151;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 SmartRain - Imagini Necesare</h1>
+        
+        <div class="info">
+            <h2>ℹ️ Informații Importante</h2>
+            <p>Pentru ca site-ul să funcționeze complet, va trebui să adăugați imagini în directorul <code>images/</code>.</p>
+            <p>Puteți folosi:</p>
+            <ul>
+                <li>🖼️ Imagini proprii (fotografii ale sistemului dvs.)</li>
+                <li>🌐 Imagini gratuite de pe <a href="https://unsplash.com" target="_blank">Unsplash</a>, <a href="https://pexels.com" target="_blank">Pexels</a>, sau <a href="https://pixabay.com" target="_blank">Pixabay</a></li>
+                <li>🎨 Imagini generate cu AI (DALL-E, Midjourney, Stable Diffusion)</li>
+            </ul>
+        </div>
+
+        <h2>📋 Lista Imaginilor Necesare</h2>
+        
+        <div class="image-list">
+            <!-- Hero Images -->
+            <div class="image-item">
+                <h3>hero1.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/hero1.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 1920 x 600 px</p>
+                <p><strong>Sugestie:</strong> Sistem de colectare a apei de ploaie</p>
+                <a href="https://unsplash.com/s/photos/rainwater-collection" target="_blank" class="download-link">Caută pe Unsplash</a>
+            </div>
+
+            <div class="image-item">
+                <h3>hero2.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/hero2.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 1920 x 600 px</p>
+                <p><strong>Sugestie:</strong> Tehnologie IoT / ESP32 / Electronice</p>
+                <a href="https://unsplash.com/s/photos/iot-technology" target="_blank" class="download-link">Caută pe Unsplash</a>
+            </div>
+
+            <div class="image-item">
+                <h3>hero3.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/hero3.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 1920 x 600 px</p>
+                <p><strong>Sugestie:</strong> Natură / Sustenabilitate / Apă</p>
+                <a href="https://unsplash.com/s/photos/water-sustainability" target="_blank" class="download-link">Caută pe Unsplash</a>
+            </div>
+
+            <!-- About Page Images -->
+            <div class="image-item">
+                <h3>about-system.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/about-system.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Diagramă sistem / Setup tehnic</p>
+            </div>
+
+            <div class="image-item">
+                <h3>architecture.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/architecture.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 1200 x 800 px</p>
+                <p><strong>Sugestie:</strong> Diagramă arhitectură sistem</p>
+            </div>
+
+            <!-- Gallery Images -->
+            <div class="image-item">
+                <h3>gallery/sistem-complet.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/sistem-complet.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Vedere de ansamblu a sistemului</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/esp32.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/esp32.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Microcontroller ESP32</p>
+                <a href="https://unsplash.com/s/photos/esp32" target="_blank" class="download-link">Caută pe Unsplash</a>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/senzori.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/senzori.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Senzori de calitate apă</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/rezervor.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/rezervor.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Rezervor de apă</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/filtru.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/filtru.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Sistem de filtrare</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/instalare-1.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/instalare-1.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Proces de instalare - Pas 1</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/instalare-2.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/instalare-2.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Proces de instalare - Pas 2</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/dashboard.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/dashboard.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Screenshot dashboard web</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/date-calitate.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/date-calitate.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Grafice cu date despre calitate</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/pompa.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/pompa.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Pompă de apă</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/valve.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/valve.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Electrovalve</p>
+            </div>
+
+            <div class="image-item">
+                <h3>gallery/grafice.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/gallery/grafice.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 800 x 600 px</p>
+                <p><strong>Sugestie:</strong> Grafice și vizualizări date</p>
+            </div>
+
+            <!-- User Images -->
+            <div class="image-item">
+                <h3>user1.jpg, user2.jpg, user3.jpg</h3>
+                <p><strong>Locație:</strong> <code>images/user1.jpg</code></p>
+                <p><strong>Dimensiune:</strong> 100 x 100 px (circular)</p>
+                <p><strong>Sugestie:</strong> Avatar utilizatori pentru testimoniale</p>
+                <a href="https://unsplash.com/s/photos/portrait" target="_blank" class="download-link">Caută pe Unsplash</a>
+            </div>
+        </div>
+
+        <div class="info">
+            <h2>🎨 Alternative Rapide</h2>
+            <p><strong>Placeholder Images:</strong> Dacă vrei să testezi site-ul rapid, poți folosi servicii de placeholder:</p>
+            <ul>
+                <li><a href="https://placeholder.com/" target="_blank">Placeholder.com</a></li>
+                <li><a href="https://picsum.photos/" target="_blank">Lorem Picsum</a></li>
+                <li><a href="https://dummyimage.com/" target="_blank">DummyImage</a></li>
+            </ul>
+            <p><strong>Exemplu:</strong> <code>https://picsum.photos/1920/600</code> pentru hero images</p>
+        </div>
+
+        <div class="info">
+            <h2>📂 Structura Directoarelor</h2>
+            <p>Creează următoarea structură de foldere:</p>
+            <pre style="background: #374151; color: #f9fafb; padding: 15px; border-radius: 5px; overflow-x: auto;">
+proiect/
+└── images/
+    ├── hero1.jpg
+    ├── hero2.jpg
+    ├── hero3.jpg
+    ├── about-system.jpg
+    ├── architecture.jpg
+    ├── user1.jpg
+    ├── user2.jpg
+    ├── user3.jpg
+    └── gallery/
+        ├── sistem-complet.jpg
+        ├── esp32.jpg
+        ├── senzori.jpg
+        ├── rezervor.jpg
+        ├── filtru.jpg
+        ├── instalare-1.jpg
+        ├── instalare-2.jpg
+        ├── dashboard.jpg
+        ├── date-calitate.jpg
+        ├── pompa.jpg
+        ├── valve.jpg
+        └── grafice.jpg
+            </pre>
+        </div>
+    </div>
+</body>
+</html>

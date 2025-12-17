@@ -1,0 +1,16 @@
+Acest fișier va fi înlocuit cu imaginile tale.
+
+Pentru a adăuga imagini:
+1. Descarcă imagini de pe Unsplash, Pexels sau Pixabay
+2. Sau folosește imagini proprii
+3. Plasează-le în acest director images/
+
+Imagini necesare:
+- hero1.jpg (1920 x 600 px)
+- hero2.jpg (1920 x 600 px)
+- hero3.jpg (1920 x 600 px)
+- about-system.jpg (800 x 600 px)
+- architecture.jpg (1200 x 800 px)
+- user1.jpg, user2.jpg, user3.jpg (100 x 100 px)
+
+Vezi IMAGINI-NECESARE.html pentru lista completă.

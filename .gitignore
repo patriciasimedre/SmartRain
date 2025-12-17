@@ -1,0 +1,15 @@
+# PHP files (păstrăm doar HTML pentru GitHub Pages)
+*.php
+
+# JSON files (dacă conțin date sensibile)
+contact_messages.json
+
+# MacOS
+.DS_Store
+
+# Editor directories
+.vscode/
+.idea/
+
+# Logs
+*.log

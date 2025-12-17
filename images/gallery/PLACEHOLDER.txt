@@ -1,0 +1,19 @@
+Acest director va conține imaginile galeriei.
+
+Imagini necesare în gallery/:
+- sistem-complet.jpg
+- esp32.jpg
+- senzori.jpg
+- rezervor.jpg
+- filtru.jpg
+- instalare-1.jpg
+- instalare-2.jpg
+- dashboard.jpg
+- date-calitate1.jpg
+- pompa.jpg
+- valve.jpg
+- grafice.jpg
+
+Toate imaginile ar trebui să fie 800 x 600 px pentru consistență.
+
+Vezi IMAGINI-NECESARE.html pentru mai multe detalii.

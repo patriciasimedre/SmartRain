@@ -1,0 +1,401 @@
+?>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie - SmartRain</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFC992KBTC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YFC992KBTC');
+    </script>
+</head>
+<body>
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-cloud-rain"></i>
+                <span>SmartRain</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="despre.html">Despre</a></li>
+                <li><a href="sistem.html">Sistem</a></li>
+                <li><a href="monitorizare.html">Monitorizare</a></li>
+                <li><a href="galerie.html" class="active">Galerie</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Schimbă tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="search-toggle" id="searchToggle" title="Căutare">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Caută în site..." autocomplete="off">
+            <button class="search-close" id="searchClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Galerie Media</h1>
+            <p>Imagini și video din proiectul SmartRain</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filters -->
+    <section class="gallery-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Toate</button>
+                <button class="filter-btn" data-filter="sistem">Sistem</button>
+                <button class="filter-btn" data-filter="componente">Componente</button>
+                <button class="filter-btn" data-filter="instalare">Instalare</button>
+                <button class="filter-btn" data-filter="rezultate">Rezultate</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery -->
+    <section class="image-gallery">
+        <div class="container">
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="sistem">
+                    <img src="images/gallery/sistem-complet1.jpg" alt="Sistem SmartRain complet">
+                    <div class="gallery-overlay">
+                        <h3>Sistem Complet</h3>
+                        <p>Vedere de ansamblu a sistemului SmartRain</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="componente">
+                    <img src="images/gallery/esp32.jpg" alt="ESP32 Microcontroller">
+                    <div class="gallery-overlay">
+                        <h3>ESP32</h3>
+                        <p>Microcontroller principal</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="componente">
+                    <img src="images/gallery/senzori.jpg" alt="Senzori de calitate">
+                    <div class="gallery-overlay">
+                        <h3>Senzori</h3>
+                        <p>Senzori de turbiditate și TDS</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="sistem">
+                    <img src="images/gallery/rezervor.jpg" alt="Rezervor de apă">
+                    <div class="gallery-overlay">
+                        <h3>Rezervor</h3>
+                        <p>Sistem de stocare 600L</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="componente">
+                    <img src="images/gallery/filtru.jpg" alt="Sistem de filtrare">
+                    <div class="gallery-overlay">
+                        <h3>Filtrare</h3>
+                        <p>Sistem multi-stage de filtrare</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="instalare">
+                    <img src="images/gallery/instalare-1.jpg" alt="Proces instalare">
+                    <div class="gallery-overlay">
+                        <h3>Instalare - Pas 1</h3>
+                        <p>Montare componente principale</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="instalare">
+                    <img src="images/gallery/instalare-2.jpg" alt="Cablare sistem">
+                    <div class="gallery-overlay">
+                        <h3>Instalare - Pas 2</h3>
+                        <p>Conectare electrică și senzori</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="rezultate">
+                    <img src="images/gallery/dashboard.jpg" alt="Dashboard web">
+                    <div class="gallery-overlay">
+                        <h3>Dashboard</h3>
+                        <p>Interfață web de monitorizare</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="rezultate">
+                    <img src="images/gallery/date-calitate.jpg" alt="Date despre calitate">
+                    <div class="gallery-overlay">
+                        <h3>Calitate Apă</h3>
+                        <p>Rezultate analiză calitate</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="sistem">
+                    <img src="images/gallery/pompa.jpg" alt="Pompă de apă">
+                    <div class="gallery-overlay">
+                        <h3>Pompă</h3>
+                        <p>Sistem de pompare 12V</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="componente">
+                    <img src="images/gallery/valve.jpg" alt="Electrovalve">
+                    <div class="gallery-overlay">
+                        <h3>Electrovalve</h3>
+                        <p>Control flux apă</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="rezultate">
+                    <img src="images/gallery/grafice.jpg" alt="Grafice date">
+                    <div class="gallery-overlay">
+                        <h3>Grafice</h3>
+                        <p>Vizualizare date în timp</p>
+                        <button class="view-btn"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">Video Prezentare</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/tiOAsM-mIKE" 
+                                title="Prezentare SmartRain" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3>Prezentare Generală SmartRain</h3>
+                    <p>Descoperă cum funcționează sistemul nostru de colectare și filtrare a apei de ploaie.</p>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/DhEaKdmHeCk" 
+                                title="Tutorial instalare" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3>Tutorial Instalare</h3>
+                    <p>Ghid pas cu pas pentru instalarea și configurarea sistemului SmartRain.</p>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/zMau99bPHrg" 
+                                title="Rezultate și beneficii" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3>Rezultate și Beneficii</h3>
+                    <p>Vezi economiile de apă și beneficiile mediului obținute cu SmartRain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Ce Spun Utilizatorii</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"SmartRain a redus consumul nostru de apă potabilă cu 40%. Sistemul este complet automat și foarte ușor de utilizat!"</p>
+                    <div class="testimonial-author">
+                        <img src="images/user4.jpg" alt="Utilizator">
+                        <div>
+                            <h4>Ion Popescu</h4>
+                            <span>București</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"Tehnologia AI este impresionantă! Sistemul învață pattern-urile de consum și optimizează automat filtrarea."</p>
+                    <div class="testimonial-author">
+                        <img src="images/user2.jpg" alt="Utilizator">
+                        <div>
+                            <h4>Maria Ionescu</h4>
+                            <span>Cluj-Napoca</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"Interfața web este intuitivă și monitorizarea în timp real îmi oferă control complet asupra sistemului."</p>
+                    <div class="testimonial-author">
+                        <img src="images/user3.jpg" alt="Utilizator">
+                        <div>
+                            <h4>Andrei Georgescu</h4>
+                            <span>Timișoara</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SmartRain</h4>
+                    <p>Sistem automatizat pentru colectarea și filtrarea inteligentă a apei de ploaie în mediul urban.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Link-uri Rapide</h4>
+                    <ul>
+                        <li><a href="index.html">Acasă</a></li>
+                        <li><a href="despre.html">Despre</a></li>
+                        <li><a href="sistem.html">Sistem</a></li>
+                        <li><a href="monitorizare.html">Monitorizare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@smartrain.ro</li>
+                        <li><i class="fas fa-phone"></i> +40 123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> București, România</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Abonează-te pentru actualizări</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email-ul tău" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2025 SmartRain. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" title="Sus">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Help Button -->
+    <button class="help-btn" id="helpBtn" title="Ajutor">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Ajutor</h2>
+            <div class="help-content">
+                <h3>Navigare</h3>
+                <p>Folosește meniul de navigare pentru a explora diferitele secțiuni ale site-ului.</p>
+                <h3>Căutare</h3>
+                <p>Apasă pe iconița de căutare pentru a căuta informații în site.</p>
+                <h3>Temă</h3>
+                <p>Folosește butonul de temă pentru a comuta între modul light și dark.</p>
+                <h3>Contact</h3>
+                <p>Pentru întrebări, vizitează pagina de <a href="contact.html">Contact</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-image" id="modalImage" src="" alt="">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>

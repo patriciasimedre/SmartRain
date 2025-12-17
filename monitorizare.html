@@ -1,0 +1,419 @@
+?>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitorizare - SmartRain</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFC992KBTC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YFC992KBTC');
+    </script>
+</head>
+<body>
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-cloud-rain"></i>
+                <span>SmartRain</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="despre.html">Despre</a></li>
+                <li><a href="sistem.html">Sistem</a></li>
+                <li><a href="monitorizare.html" class="active">Monitorizare</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Schimbă tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="search-toggle" id="searchToggle" title="Căutare">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Caută în site..." autocomplete="off">
+            <button class="search-close" id="searchClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Dashboard Monitorizare</h1>
+            <p>Date în timp real de la sistemul SmartRain</p>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+        <div class="container">
+            <!-- Status Cards -->
+            <div class="status-cards">
+                <div class="status-card">
+                    <div class="status-icon water">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3>Nivel Rezervor</h3>
+                        <p class="status-value" id="waterLevel">75%</p>
+                        <span class="status-label">450L / 600L</span>
+                    </div>
+                    <div class="status-trend up">
+                        <i class="fas fa-arrow-up"></i> 5%
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-icon quality">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3>Calitate Apă</h3>
+                        <p class="status-value" id="waterQuality">Bună</p>
+                        <span class="status-label">Turbiditate: 12 NTU</span>
+                    </div>
+                    <div class="status-trend stable">
+                        <i class="fas fa-minus"></i> 0%
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-icon pump">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3>Status Pompă</h3>
+                        <p class="status-value active" id="pumpStatus">Activă</p>
+                        <span class="status-label">Flux: 4.2 L/min</span>
+                    </div>
+                    <div class="status-indicator active"></div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-icon mode">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3>Mod Operare</h3>
+                        <p class="status-value" id="operationMode">Automat</p>
+                        <span class="status-label">AI Activat</span>
+                    </div>
+                    <button class="change-mode-btn">Schimbă</button>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <h3>Nivel Rezervor (24h)</h3>
+                    <canvas id="levelChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Calitate Apă (7 zile)</h3>
+                    <canvas id="qualityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Sensors Grid -->
+            <div class="sensors-grid">
+                <h2 class="section-title">Senzori în Timp Real</h2>
+                <div class="sensors-cards">
+                    <div class="sensor-card">
+                        <i class="fas fa-vial"></i>
+                        <h4>Turbiditate</h4>
+                        <p class="sensor-value" id="turbidity">12.4</p>
+                        <span class="sensor-unit">NTU</span>
+                        <div class="sensor-bar">
+                            <div class="sensor-progress" style="width: 15%"></div>
+                        </div>
+                        <span class="sensor-status good">Normal</span>
+                    </div>
+
+                    <div class="sensor-card">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Conductivitate (TDS)</h4>
+                        <p class="sensor-value" id="tds">245</p>
+                        <span class="sensor-unit">ppm</span>
+                        <div class="sensor-bar">
+                            <div class="sensor-progress" style="width: 25%"></div>
+                        </div>
+                        <span class="sensor-status good">Bună</span>
+                    </div>
+
+                    <div class="sensor-card">
+                        <i class="fas fa-thermometer-half"></i>
+                        <h4>Temperatură</h4>
+                        <p class="sensor-value" id="temperature">18.5</p>
+                        <span class="sensor-unit">°C</span>
+                        <div class="sensor-bar">
+                            <div class="sensor-progress" style="width: 37%"></div>
+                        </div>
+                        <span class="sensor-status good">Optimă</span>
+                    </div>
+
+                    <div class="sensor-card">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h4>pH</h4>
+                        <p class="sensor-value" id="ph">7.2</p>
+                        <span class="sensor-unit">pH</span>
+                        <div class="sensor-bar">
+                            <div class="sensor-progress" style="width: 51%"></div>
+                        </div>
+                        <span class="sensor-status good">Neutru</span>
+                    </div>
+
+                    <div class="sensor-card">
+                        <i class="fas fa-cloud-rain"></i>
+                        <h4>Debit Intrare</h4>
+                        <p class="sensor-value" id="flowIn">3.8</p>
+                        <span class="sensor-unit">L/min</span>
+                        <div class="sensor-bar">
+                            <div class="sensor-progress" style="width: 38%"></div>
+                        </div>
+                        <span class="sensor-status good">Activ</span>
+                    </div>
+
+                    <div class="sensor-card">
+                        <i class="fas fa-faucet"></i>
+                        <h4>Debit Ieșire</h4>
+                        <p class="sensor-value" id="flowOut">4.2</p>
+                        <span class="sensor-unit">L/min</span>
+                        <div class="sensor-bar">
+                            <div class="sensor-progress" style="width: 42%"></div>
+                        </div>
+                        <span class="sensor-status good">Activ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2 class="section-title">Panou de Control</h2>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <label>Pompă Principală</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="mainPump" checked>
+                            <label for="mainPump"></label>
+                        </div>
+                        <span class="control-status">Pornită</span>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Valvă Intrare</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="valveIn" checked>
+                            <label for="valveIn"></label>
+                        </div>
+                        <span class="control-status">Deschisă</span>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Valvă Ieșire</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="valveOut">
+                            <label for="valveOut"></label>
+                        </div>
+                        <span class="control-status">Închisă</span>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Sistem Filtrare</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="filterSystem" checked>
+                            <label for="filterSystem"></label>
+                        </div>
+                        <span class="control-status">Activ</span>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Modul AI</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="aiModule" checked>
+                            <label for="aiModule"></label>
+                        </div>
+                        <span class="control-status">Activat</span>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Notificări</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="notifications" checked>
+                            <label for="notifications"></label>
+                        </div>
+                        <span class="control-status">Activate</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Log -->
+            <div class="activity-log">
+                <h2 class="section-title">Jurnal de Activitate</h2>
+                <div class="log-container">
+                    <div class="log-item">
+                        <div class="log-time">14:32</div>
+                        <div class="log-icon info"><i class="fas fa-info-circle"></i></div>
+                        <div class="log-message">Sistem pornit în modul automat</div>
+                    </div>
+                    <div class="log-item">
+                        <div class="log-time">14:28</div>
+                        <div class="log-icon success"><i class="fas fa-check-circle"></i></div>
+                        <div class="log-message">Calitate apă verificată - status: BUN</div>
+                    </div>
+                    <div class="log-item">
+                        <div class="log-time">14:15</div>
+                        <div class="log-icon warning"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="log-message">Turbiditate ridicată detectată - filtrare activată</div>
+                    </div>
+                    <div class="log-item">
+                        <div class="log-time">13:45</div>
+                        <div class="log-icon success"><i class="fas fa-check-circle"></i></div>
+                        <div class="log-message">Pompă pornită - flux normal</div>
+                    </div>
+                    <div class="log-item">
+                        <div class="log-time">13:30</div>
+                        <div class="log-icon info"><i class="fas fa-cloud-rain"></i></div>
+                        <div class="log-message">Ploaie detectată - începere colectare</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Integration -->
+            <div class="weather-widget">
+                <h2 class="section-title">Condiții Meteo</h2>
+                <div class="weather-current">
+                    <div class="weather-icon">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <div class="weather-temp">16°C</div>
+                    <div class="weather-desc">Ploaie ușoară</div>
+                </div>
+                <div class="weather-forecast">
+                    <div class="forecast-item">
+                        <span>Luni</span>
+                        <i class="fas fa-sun"></i>
+                        <span>22°C</span>
+                    </div>
+                    <div class="forecast-item">
+                        <span>Marți</span>
+                        <i class="fas fa-cloud-sun"></i>
+                        <span>20°C</span>
+                    </div>
+                    <div class="forecast-item">
+                        <span>Miercuri</span>
+                        <i class="fas fa-cloud-rain"></i>
+                        <span>17°C</span>
+                    </div>
+                    <div class="forecast-item">
+                        <span>Joi</span>
+                        <i class="fas fa-cloud-showers-heavy"></i>
+                        <span>15°C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SmartRain</h4>
+                    <p>Sistem automatizat pentru colectarea și filtrarea inteligentă a apei de ploaie în mediul urban.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Link-uri Rapide</h4>
+                    <ul>
+                        <li><a href="index.html">Acasă</a></li>
+                        <li><a href="despre.html">Despre</a></li>
+                        <li><a href="sistem.html">Sistem</a></li>
+                        <li><a href="monitorizare.html">Monitorizare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@smartrain.ro</li>
+                        <li><i class="fas fa-phone"></i> +40 123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> București, România</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Abonează-te pentru actualizări</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email-ul tău" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2025 SmartRain. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" title="Sus">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Help Button -->
+    <button class="help-btn" id="helpBtn" title="Ajutor">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Ajutor</h2>
+            <div class="help-content">
+                <h3>Navigare</h3>
+                <p>Folosește meniul de navigare pentru a explora diferitele secțiuni ale site-ului.</p>
+                <h3>Căutare</h3>
+                <p>Apasă pe iconița de căutare pentru a căuta informații în site.</p>
+                <h3>Temă</h3>
+                <p>Folosește butonul de temă pentru a comuta între modul light și dark.</p>
+                <h3>Contact</h3>
+                <p>Pentru întrebări, vizitează pagina de <a href="contact.html">Contact</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

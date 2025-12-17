@@ -1,0 +1,491 @@
+?>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem - SmartRain</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFC992KBTC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YFC992KBTC');
+    </script>
+</head>
+<body>
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-cloud-rain"></i>
+                <span>SmartRain</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="despre.html">Despre</a></li>
+                <li><a href="sistem.html" class="active">Sistem</a></li>
+                <li><a href="monitorizare.html">Monitorizare</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Schimbă tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="search-toggle" id="searchToggle" title="Căutare">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Caută în site..." autocomplete="off">
+            <button class="search-close" id="searchClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Arhitectura Sistemului</h1>
+            <p>Componente hardware și algoritmi de control pentru SmartRain</p>
+        </div>
+    </section>
+
+    <!-- System Overview -->
+    <section class="about-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Prezentare Generală</h2>
+                    <p>Sistemul SmartRain este construit pe arhitectura ESP32, integrând senzori avansați, algoritmi de control inteligent și conectivitate IoT pentru o soluție completă de management al apei de ploaie.</p>
+                    
+                    <p>Arhitectura este construită în jurul microcontrollerului <strong>ESP32</strong>, care coordonează toate componentele și permite conectivitate Wi-Fi pentru monitorizare remotă în timp real.</p>
+                    
+                    <p>Sistemul poate funcționa în mai multe moduri: automat, manual, programat sau urgență, oferind flexibilitate maximă în funcție de nevoile utilizatorului.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/architecture.png" alt="Arhitectura sistemului">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Table -->
+    <section class="components-section">
+        <div class="container">
+            <h2 class="section-title">Componente Hardware</h2>
+            <div class="table-wrapper">
+                <table class="components-table">
+                    <thead>
+                        <tr>
+                            <th>Nr.</th>
+                            <th>Componentă</th>
+                            <th>Model/Specificații</th>
+                            <th>Funcție Principală</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><i class="fas fa-microchip"></i> Microcontroller</td>
+                            <td>ESP32 DevKit V1 Dual-Core 240MHz</td>
+                            <td>Unitate centrală de control, procesare date, Wi-Fi</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><i class="fas fa-tint"></i> Senzor Turbiditate</td>
+                            <td>SEN0189 (0-3000 NTU)</td>
+                            <td>Măsurare claritate și particule în suspensie</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><i class="fas fa-vial"></i> Senzor TDS</td>
+                            <td>TDS-3 (0-1000 ppm)</td>
+                            <td>Măsurare conductivitate electrică și solide dizolvate</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><i class="fas fa-thermometer-half"></i> Senzor Temperatură</td>
+                            <td>DS18B20 Waterproof</td>
+                            <td>Monitorizare temperatură apă în rezervoare</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><i class="fas fa-water"></i> Senzor Nivel</td>
+                            <td>HC-SR04 Ultrasonic</td>
+                            <td>Detectare nivel apă și prevenire overflow</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><i class="fas fa-cloud-rain"></i> Senzor Ploaie</td>
+                            <td>YL-83 Rain Sensor</td>
+                            <td>Detecție precipitații și activare sistem</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><i class="fas fa-compress-arrows-alt"></i> Pompă Apă</td>
+                            <td>12V DC Submersible 600L/h</td>
+                            <td>Circulație apă prin sistem de filtrare</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><i class="fas fa-valve"></i> Valve Solenoid</td>
+                            <td>12V DC 1/2" Normally Closed</td>
+                            <td>Control flux apă între rezervoare</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><i class="fas fa-filter"></i> Sistem Filtrare</td>
+                            <td>Multi-strat (nisip, cărbune activ)</td>
+                            <td>Purificare fizică și chimică a apei</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><i class="fas fa-battery-full"></i> Alimentare</td>
+                            <td>12V 5A Power Supply + UPS</td>
+                            <td>Alimentare sistem și backup 2 ore</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Control Algorithms -->
+    <section class="algorithms-section">
+        <div class="container">
+            <h2 class="section-title">Algoritmi de Control</h2>
+            <div class="algorithms-grid">
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Control PI (Proporțional-Integral)</h3>
+                    <p>Utilizat pentru controlul precis al pompelor și menținerea nivelului optim de apă în rezervoare. Algoritmul ajustează viteza pompelor bazat pe eroarea curentă și acumulată.</p>
+                    <ul class="algorithm-benefits">
+                        <li><i class="fas fa-check"></i> Răspuns rapid la variații de nivel</li>
+                        <li><i class="fas fa-check"></i> Eliminare eroare steady-state</li>
+                        <li><i class="fas fa-check"></i> Stabilitate îmbunătățită a sistemului</li>
+                    </ul>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Logică Fuzzy</h3>
+                    <p>Implementat pentru decizii complexe bazate pe parametri multipli: turbiditate, TDS, nivel apă. Permite procesare a informațiilor incerte sau vagi.</p>
+                    <ul class="algorithm-benefits">
+                        <li><i class="fas fa-check"></i> Decizii bazate pe experiență umană</li>
+                        <li><i class="fas fa-check"></i> Gestionare eficientă a incertitudinii</li>
+                        <li><i class="fas fa-check"></i> Adaptare la condiții variabile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operation Modes -->
+    <section class="objectives">
+        <div class="container">
+            <h2 class="section-title">Moduri de Funcționare</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Mod Automat</h3>
+                    <p>Sistemul funcționează complet autonom, luând decizii bazate pe parametrii măsurați și algoritmi de control. Activare automată la detectarea ploii.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+                    <h3>Mod Manual</h3>
+                    <p>Control direct al tuturor componentelor prin interfața web. Util pentru teste, calibrare sau operațiuni speciale de mentenanță.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Mod Programat</h3>
+                    <p>Programare pe bază de calendar pentru operațiuni regulate: filtrare periodică, irigare programată, curățare automată a filtrelor.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Mod Urgență</h3>
+                    <p>Activat automat în caz de anomalii: overflow, calitate proastă a apei, erori de senzori. Trimite alerte și oprește sistemul.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Flow -->
+    <section class="flow-section">
+        <div class="container">
+            <h2 class="section-title">Flux de Operare</h2>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <i class="fas fa-cloud-showers-heavy"></i>
+                    <h4>Detecție Ploaie</h4>
+                    <p>Senzorul detectează precipitații și activează sistemul automat</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <i class="fas fa-database"></i>
+                    <h4>Colectare</h4>
+                    <p>Apa este dirijată în rezervorul principal prin jgheaburi</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <i class="fas fa-vial"></i>
+                    <h4>Analiză Calitate</h4>
+                    <p>Senzorii măsoară turbiditate, TDS și temperatură</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <i class="fas fa-brain"></i>
+                    <h4>Decizie Automată</h4>
+                    <p>Algoritmii AI decid necesitatea filtrării</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step">
+                    <div class="flow-number">5</div>
+                    <i class="fas fa-filter"></i>
+                    <h4>Filtrare</h4>
+                    <p>Apa trece prin sistemul multi-strat de filtrare</p>
+                </div>
+                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="flow-step">
+                    <div class="flow-number">6</div>
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Stocare/Utilizare</h4>
+                    <p>Apa curată este gata pentru utilizare</p>
+                </div>
+            </div>
+        </div>
+        <br>
+    </section>
+
+    <!-- AI Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Funcționalități AI și Machine Learning</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Analiză Predictivă</h3>
+                    <p>Predicție consum apă bazată pe date istorice, pattern-uri de utilizare și statistici seasoniere.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun-rain"></i>
+                    </div>
+                    <h3>Integrare Meteo</h3>
+                    <p>Utilizare API-uri meteo pentru predicții și optimizare automată a capacității rezervoarelor.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3>Detecție Anomalii</h3>
+                    <p>Identificare automată a comportamentului anormal și alertare în timp real prin email/SMS.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Auto-optimizare</h3>
+                    <p>Ajustare automată a parametrilor de control bazată pe performanță și feedback.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Optimizare Energie</h3>
+                    <p>Reducere consum energetic prin programare inteligentă și eficientă a pompelor.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Mentenanță Predictivă</h3>
+                    <p>Predicție necesități de mentenanță pentru prevenirea defecțiunilor și extended lifecycle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section class="specs-section">
+        <div class="container">
+            <h2 class="section-title">Specificații Tehnice Detaliate</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Hardware</h3>
+                    <ul class="spec-list">
+                        <li>Procesor: ESP32 Dual-Core Xtensa LX6 @ 240MHz</li>
+                        <li>Memorie: 520KB SRAM, 4MB Flash</li>
+                        <li>Conectivitate: Wi-Fi 802.11 b/g/n, Bluetooth 4.2 BLE</li>
+                        <li>Alimentare: 12V DC, 5A cu UPS backup</li>
+                        <li>GPIO: 34 pini programabili</li>
+                    </ul>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Software</h3>
+                    <ul class="spec-list">
+                        <li>Framework: Arduino IDE / ESP-IDF</li>
+                        <li>Protocol: MQTT, HTTP/HTTPS, WebSocket</li>
+                        <li>Backend: PHP 7.4+, MySQL 8.0</li>
+                        <li>Frontend: HTML5, CSS3, JavaScript ES6</li>
+                        <li>Librării: WiFi, WebServer, ArduinoJson, PubSubClient</li>
+                    </ul>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Capacități Sistem</h3>
+                    <ul class="spec-list">
+                        <li>Rezervor Principal: 1000L (colectare brută)</li>
+                        <li>Rezervor Filtrat: 500L (apă tratată)</li>
+                        <li>Debit Pompă: 600L/h maximum</li>
+                        <li>Capacitate Filtrare: 100L/h continuu</li>
+                        <li>Precizie Senzori: ±2% @ 25°C</li>
+                    </ul>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Siguranță</h3>
+                    <ul class="spec-list">
+                        <li>Protecție Overflow: Senzori redundanți nivel</li>
+                        <li>Alimentare UPS: Backup baterie 2 ore</li>
+                        <li>Protecție Pompă: Dry-run prevention</li>
+                        <li>Alerte: Email, SMS, Push notifications</li>
+                        <li>Backup Date: Cloud storage automat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SmartRain</h4>
+                    <p>Sistem automatizat pentru colectarea și filtrarea inteligentă a apei de ploaie în mediul urban.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Link-uri Rapide</h4>
+                    <ul>
+                        <li><a href="index.html">Acasă</a></li>
+                        <li><a href="despre.html">Despre</a></li>
+                        <li><a href="sistem.html">Sistem</a></li>
+                        <li><a href="monitorizare.html">Monitorizare</a></li>
+                        <li><a href="galerie.html">Galerie</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@smartrain.ro</li>
+                        <li><i class="fas fa-phone"></i> +40 123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> București, România</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Abonează-te pentru actualizări</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email-ul tău" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2025 SmartRain. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" title="Sus">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Help Button -->
+    <button class="help-btn" id="helpBtn" title="Ajutor">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Ajutor - Sistem</h2>
+            <div class="help-content">
+                <h3>Componente Hardware</h3>
+                <p>Tabelul prezintă toate componentele fizice ale sistemului SmartRain.</p>
+                <h3>Algoritmi de Control</h3>
+                <p>Sistemul folosește algoritmi PI și Fuzzy Logic pentru controlul automat.</p>
+                <h3>Specificații Tehnice</h3>
+                <p>Detalii complete despre capacități și parametri tehnici ai sistemului.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

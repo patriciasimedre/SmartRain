@@ -1,0 +1,452 @@
+
+// Handle form submission
+$message = '';
+$messageType = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = htmlspecialchars(trim($_POST['name'] ?? ''));
+    $email = htmlspecialchars(trim($_POST['email'] ?? ''));
+    $phone = htmlspecialchars(trim($_POST['phone'] ?? ''));
+    $subject = htmlspecialchars(trim($_POST['subject'] ?? ''));
+    $messageText = htmlspecialchars(trim($_POST['message'] ?? ''));
+    
+    // Basic validation
+    $errors = [];
+    
+    if (empty($name)) {
+        $errors[] = "Numele este obligatoriu.";
+    }
+    
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Email-ul este invalid.";
+    }
+    
+    if (!empty($phone) && !preg_match('/^[0-9+\-\s()]+$/', $phone)) {
+        $errors[] = "Numărul de telefon este invalid.";
+    }
+    
+    if (empty($subject)) {
+        $errors[] = "Subiectul este obligatoriu.";
+    }
+    
+    if (empty($messageText)) {
+        $errors[] = "Mesajul este obligatoriu.";
+    }
+    
+    if (empty($errors)) {
+        // Save message to file
+        $messageData = [
+            'date' => date('Y-m-d H:i:s'),
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'subject' => $subject,
+            'message' => $messageText
+        ];
+        
+        $logFile = __DIR__ . '/contact_messages.json';
+        $messages = [];
+        
+        if (file_exists($logFile)) {
+            $content = file_get_contents($logFile);
+            $messages = json_decode($content, true) ?? [];
+        }
+        
+        $messages[] = $messageData;
+        $result = file_put_contents($logFile, json_encode($messages, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        
+        if ($result === false) {
+            $errors[] = "Eroare la salvarea mesajului. Verificați permisiunile directorului.";
+        }
+        if ($result === false) {
+            $errors[] = "Eroare la salvarea mesajului. Verificați permisiunile directorului.";
+        }
+        
+        if (empty($errors)) {
+            // Send email (requires mail configuration)
+            $to = "contact@smartrain.ro";
+            $emailSubject = "Contact SmartRain: " . $subject;
+            $emailBody = "Nume: $name\n";
+            $emailBody .= "Email: $email\n";
+            $emailBody .= "Telefon: $phone\n\n";
+            $emailBody .= "Subiect: $subject\n\n";
+            $emailBody .= "Mesaj:\n$messageText\n";
+            $headers = "From: $email\r\n";
+            $headers .= "Reply-To: $email\r\n";
+            $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+            
+            // Uncomment when mail server is configured
+            // mail($to, $emailSubject, $emailBody, $headers);
+            
+            $message = "Mulțumim! Mesajul dumneavoastră a fost trimis cu succes. Vă vom contacta în cel mai scurt timp.";
+            $messageType = 'success';
+            
+            // Clear form data after success
+            $_POST = [];
+        }
+    }
+    
+    if (!empty($errors)) {
+        $message = implode('<br>', $errors);
+        $messageType = 'error';
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - SmartRain</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFC992KBTC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YFC992KBTC');
+    </script>
+</head>
+<body>
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-cloud-rain"></i>
+                <span>SmartRain</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="despre.html">Despre</a></li>
+                <li><a href="sistem.html">Sistem</a></li>
+                <li><a href="monitorizare.html">Monitorizare</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Schimbă tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="search-toggle" id="searchToggle" title="Căutare">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Caută în site..." autocomplete="off">
+            <button class="search-close" id="searchClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contactează-ne</h1>
+            <p>Suntem aici pentru a răspunde întrebărilor tale</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <?php if ($message): ?>
+            <div class="alert alert-<?php echo $messageType; ?>">
+                <?php echo $message; ?>
+            </div>
+            <?php endif; ?>
+
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Trimite-ne un mesaj</h2>
+                    <form class="contact-form" method="POST" action="contact.html" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nume complet <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Ion Popescu">
+                            <span class="form-error" id="nameError"></span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="ion.popescu@email.ro">
+                                <span class="form-error" id="emailError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+40 123 456 789">
+                                <span class="form-error" id="phoneError"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subiect <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Selectează un subiect</option>
+                                <option value="informatii">Informații generale</option>
+                                <option value="pret">Solicitare ofertă de preț</option>
+                                <option value="suport">Suport tehnic</option>
+                                <option value="colaborare">Oportunități de colaborare</option>
+                                <option value="altele">Altele</option>
+                            </select>
+                            <span class="form-error" id="subjectError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mesaj <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Scrie mesajul tău aici..."></textarea>
+                            <span class="form-error" id="messageError"></span>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <span>Sunt de acord cu <a href="#">politica de confidențialitate</a> <span class="required">*</span></span>
+                            </label>
+                            <span class="form-error" id="privacyError"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Trimite Mesajul
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2>Informații de Contact</h2>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Adresă</h3>
+                            <p>Aleea Studenților<br>Cămin 9C, Timișoara<br>România</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Telefon</h3>
+                            <p>+40 123 456 789<br>Luni - Vineri: 09:00 - 18:00</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <p>contact@smartrain.ro<br>suport@smartrain.ro</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Program</h3>
+                            <p>Luni - Vineri: 09:00 - 18:00<br>Sâmbătă: 10:00 - 14:00<br>Duminică: Închis</p>
+                        </div>
+                    </div>
+
+                    <div class="social-contact">
+                        <h3>Rețele Sociale</h3>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Locația Noastră</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.3888888888888!2d21.227777777777778!3d45.756666666666664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47455d84610555b1%3A0x5528e7b1e1c3c7c7!2sAleea%20Studen%C8%9Bilor%2C%20Timi%C8%99oara%2C%20Romania!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Întrebări Frecvente</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Cât costă sistemul SmartRain?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Prețul sistemului variază în funcție de configurație și capacitatea rezervorului. Vă rugăm să ne contactați pentru o ofertă personalizată.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Cât timp durează instalarea?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Instalarea standard durează între 1-2 zile, în funcție de complexitatea sistemului și configurația locației.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Este necesară întreținere regulată?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sistemul necesită întreținere minimă: curățare filtre la 3-6 luni și verificare senzori anual. Sistemul AI vă va notifica automat când este necesară întreținerea.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Ce garanție oferă sistemul?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oferim garanție de 2 ani pentru componentele hardware și suport tehnic gratuit pentru software pe toată durata de viață a produsului.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Pot controla sistemul de la distanță?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Da! Sistemul este complet conectat și poate fi controlat de la distanță prin interfața web sau aplicația mobilă de oriunde aveți acces la internet.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Cât de multă apă pot economisi?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>În medie, utilizatorii economisesc 30-40% din consumul de apă potabilă, variând în funcție de cantitatea de precipitații din zona dumneavoastră.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SmartRain</h4>
+                    <p>Sistem automatizat pentru colectarea și filtrarea inteligentă a apei de ploaie în mediul urban.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Link-uri Rapide</h4>
+                    <ul>
+                        <li><a href="index.html">Acasă</a></li>
+                        <li><a href="despre.html">Despre</a></li>
+                        <li><a href="sistem.html">Sistem</a></li>
+                        <li><a href="monitorizare.html">Monitorizare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@smartrain.ro</li>
+                        <li><i class="fas fa-phone"></i> +40 123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Timișoara, România</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Abonează-te pentru actualizări</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email-ul tău" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2025 SmartRain. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" title="Sus">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Help Button -->
+    <button class="help-btn" id="helpBtn" title="Ajutor">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Ajutor</h2>
+            <div class="help-content">
+                <h3>Navigare</h3>
+                <p>Folosește meniul de navigare pentru a explora diferitele secțiuni ale site-ului.</p>
+                <h3>Căutare</h3>
+                <p>Apasă pe iconița de căutare pentru a căuta informații în site.</p>
+                <h3>Temă</h3>
+                <p>Folosește butonul de temă pentru a comuta între modul light și dark.</p>
+                <h3>Contact</h3>
+                <p>Pentru întrebări, vizitează pagina de <a href="contact.html">Contact</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>

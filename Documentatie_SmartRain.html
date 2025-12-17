@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Documentatie_SmartRain.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="documenta%C8%9Bie-site-web---smartrain">Documentație Site Web - SmartRain</h1>
+<h2 id="proiect-interfe%C8%9Be-utilizator">Proiect Interfețe Utilizator</h2>
+<hr>
+<p><strong>Student:</strong> Simedre Patricia<br>
+<strong>An universitar:</strong> 2024-2025<br>
+<strong>Facultatea:</strong> Automatică și Calculatoare<br>
+<strong>Universitatea:</strong> Politehnica Timișoara</p>
+<hr>
+<h2 id="1-descrierea-tematicii-alese-%C8%99i-argumentarea-alegerii">1. Descrierea Tematicii Alese și Argumentarea Alegerii</h2>
+<h3 id="tematica-smartrain---sistem-iot-de-colectare-ap%C4%83-pluvial%C4%83">Tematica: SmartRain - Sistem IoT de Colectare Apă Pluvială</h3>
+<p><strong>SmartRain</strong> este un sistem inteligent de management al apei pluviale, conceput pentru optimizarea consumului de apă în mediul urban prin colectarea, filtrarea și redistribuirea automată a apei de ploaie.</p>
+<h3 id="argumentarea-alegerii">Argumentarea Alegerii</h3>
+<p>Am ales această tematică din următoarele considerente:</p>
+<ol>
+<li><strong>Relevanță actuală</strong>: Schimbările climatice și seceta fac gestionarea resurselor de apă esențială</li>
+<li><strong>Inovație tehnologică</strong>: Combinarea IoT cu sustenabilitatea mediului</li>
+<li><strong>Impact practic</strong>: Soluție reală pentru reducerea consumului de apă potabilă</li>
+<li><strong>Complexitate tehnică</strong>: Permite demonstrarea cunoștințelor despre sisteme embedded, senzori și automatizare</li>
+<li><strong>Potențial educativ</strong>: Site-ul oferă informații valoroase despre tehnologie verde</li>
+</ol>
+<hr>
+<h2 id="2-descrierea-site-ului-prin-prisma-principiilor-de-design">2. Descrierea Site-ului prin Prisma Principiilor de Design</h2>
+<h3 id="21-tehnologii-utilizate">2.1 Tehnologii Utilizate</h3>
+<ul>
+<li><strong>HTML5</strong>: Structură semantică a paginilor</li>
+<li><strong>CSS3</strong>: Stilizare modernă cu variabile CSS, flexbox, grid, animații</li>
+<li><strong>JavaScript (Vanilla ES6)</strong>: Interactivitate (carousel, search, tema dark/light, validare formulare)</li>
+<li><strong>PHP 7.4+</strong>: Backend pentru procesarea formularului de contact</li>
+<li><strong>JSON</strong>: Stocare date mesaje contact</li>
+<li><strong>Font Awesome 6.4.0</strong>: Iconografie</li>
+<li><strong>Google Analytics 4</strong>: Monitorizare trafic (ID: G-YFC992KBTC)</li>
+<li><strong>Google Maps API</strong>: Integrare hartă locație</li>
+</ul>
+<p><strong>Nu s-a folosit niciun template</strong> - site-ul este creat integral de la zero.</p>
+<hr>
+<h3 id="22-principiile-lui-nielsen-10-heuristics---implementare">2.2 Principiile lui Nielsen (10 Heuristics) - Implementare</h3>
+<h4 id="1-visibility-of-system-status">1. <strong>Visibility of System Status</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Navbar cu highlighting pe pagina activă (clasa <code>.active</code>)</li>
+<li>Loader animat la încărcarea paginilor</li>
+<li>Mesaje de feedback la submit formular (success/error)</li>
+<li>Progress visual în carousel (indicatori puncte)</li>
+<li>Contor caractere în textarea formular (live counter)</li>
+</ul>
+<h4 id="2-match-between-system-and-real-world">2. <strong>Match Between System and Real World</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Limbaj în limba română, natural și familiar</li>
+<li>Iconografie intuitivă (Font Awesome): ☁️ pentru ploaie, 📊 pentru monitorizare, 📧 pentru contact</li>
+<li>Metafore vizuale: picături de apă pentru sistem pluvial</li>
+<li>Termeni tehnici explicați în context</li>
+</ul>
+<h4 id="3-user-control-and-freedom">3. <strong>User Control and Freedom</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Buton &quot;Scroll to Top&quot; pentru navigare rapidă</li>
+<li>Posibilitate de închidere a overlay-ului de search (buton X)</li>
+<li>Toggle tema dark/light reversibil</li>
+<li>Carousel navigabil manual (săgeți) sau automat</li>
+<li>Resetare formular după submit</li>
+</ul>
+<h4 id="4-consistency-and-standards">4. <strong>Consistency and Standards</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Header și footer identice pe toate paginile</li>
+<li>Stil uniform de butoane și carduri</li>
+<li>Spațiere consistentă (utilizare variabile CSS)</li>
+<li>Iconografie uniformă (aceeași bibliotecă Font Awesome)</li>
+<li>Structură de pagină predictibilă</li>
+</ul>
+<h4 id="5-error-prevention">5. <strong>Error Prevention</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Validare în timp real a formularului (blur events)</li>
+<li>Mesaje de eroare clare și specifice</li>
+<li>Input type corect (email, tel) pentru tastatură mobilă optimizată</li>
+<li>Câmpuri obligatorii marcate cu <code>required</code></li>
+<li>Limită de caractere vizibilă pentru textarea</li>
+</ul>
+<h4 id="6-recognition-rather-than-recall">6. <strong>Recognition Rather Than Recall</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Navbar vizibilă permanent (fixed position)</li>
+<li>Breadcrumbs vizuale prin highlighting</li>
+<li>Iconuri descriptive lângă text</li>
+<li>Placeholder-uri în câmpurile formularului</li>
+<li>Tooltip-uri pe butoane hover</li>
+</ul>
+<h4 id="7-flexibility-and-efficiency-of-use">7. <strong>Flexibility and Efficiency of Use</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Shortcut-uri keyboard (Enter în search)</li>
+<li>Search global cross-pages</li>
+<li>Navigare rapidă prin scroll-to-top</li>
+<li>Tema dark pentru utilizare nocturnă</li>
+<li>Responsive design pentru multiple dispozitive</li>
+</ul>
+<h4 id="8-aesthetic-and-minimalist-design">8. <strong>Aesthetic and Minimalist Design</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Design curat, spații albe generoase</li>
+<li>Paletă de culori limitată și coerentă</li>
+<li>Conținut prioritizat: titluri clare, paragrafe scurte</li>
+<li>Imagini cu scop informativ, nu decorativ</li>
+<li>Eliminarea elementelor redundante</li>
+</ul>
+<h4 id="9-help-users-recognize-diagnose-and-recover-from-errors">9. <strong>Help Users Recognize, Diagnose and Recover from Errors</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Mesaje de eroare în limba română, clare</li>
+<li>Evidențiere vizuală câmp invalid (border roșu)</li>
+<li>Sugestii de corectare (ex: &quot;Email-ul este invalid&quot;)</li>
+<li>Scroll automat la primul câmp cu eroare</li>
+<li>Pagină 404 personalizată cu linkuri de navigare</li>
+</ul>
+<h4 id="10-help-and-documentation">10. <strong>Help and Documentation</strong></h4>
+<p>✅ <strong>Implementat:</strong></p>
+<ul>
+<li>Buton help flotant pe toate paginile (?)</li>
+<li>Secțiune FAQ pe pagina de contact</li>
+<li>Descrieri detaliate pe pagina &quot;Despre&quot;</li>
+<li>Informații de contact ușor accesibile</li>
+<li>README.md cu instrucțiuni tehnice</li>
+</ul>
+<hr>
+<h3 id="23-principii-de-proiectare-vizual%C4%83-implementate">2.3 Principii de Proiectare Vizuală Implementate</h3>
+<h4 id="contrast"><strong>Contrast</strong></h4>
+<ul>
+<li>Text alb pe fundal închis (dark mode): ratio 15:1</li>
+<li>Text închis pe fundal deschis (light mode): ratio 12:1</li>
+<li>Butoane cu culori contrastante (albastru #3b82f6 pe fundal alb)</li>
+<li>Hover effects pentru evidențiere interactivitate</li>
+</ul>
+<h4 id="repetition"><strong>Repetition</strong></h4>
+<ul>
+<li>Grid layout repetat pentru carduri (despre, sistem, galerie)</li>
+<li>Stil consistent de sectiuni (padding, margin, border-radius)</li>
+<li>Pattern de culori: albastru primary, verde success, roșu error</li>
+<li>Iconografie Font Awesome pe toate paginile</li>
+</ul>
+<h4 id="alignment"><strong>Alignment</strong></h4>
+<ul>
+<li>Centrat pe axa verticală pentru titluri principale</li>
+<li>Grid alignment pentru carduri (3 coloane desktop, 1 mobil)</li>
+<li>Text aliniat stânga pentru paragrafele lungi</li>
+<li>Navbar items distribuite uniform (space-between)</li>
+</ul>
+<h4 id="proximity"><strong>Proximity</strong></h4>
+<ul>
+<li>Grupare logică: formular contact separat de info contact</li>
+<li>Spațiere între secțiuni: 4rem (64px)</li>
+<li>Carduri grupate în grid-uri tematice</li>
+<li>Footer grupat pe 3 coloane: despre, linkuri, contact</li>
+</ul>
+<h4 id="color-theory"><strong>Color Theory</strong></h4>
+<ul>
+<li><strong>Primary</strong>: Albastru #3b82f6 (încredere, tehnologie)</li>
+<li><strong>Secondary</strong>: Cyan #06b6d4 (apă, freshness)</li>
+<li><strong>Success</strong>: Verde #10b981 (eco, natură)</li>
+<li><strong>Warning</strong>: Portocaliu #f59e0b (atenție)</li>
+<li><strong>Error</strong>: Roșu #ef4444 (erori, stop)</li>
+<li><strong>Neutral</strong>: Gri #6b7280 (text secundar)</li>
+</ul>
+<p><strong>Paleta Dark Mode</strong>: Inversare cu menținerea contrastului</p>
+<ul>
+<li>Background: #0f172a (dark blue)</li>
+<li>Text: #f1f5f9 (off-white)</li>
+</ul>
+<h4 id="typography"><strong>Typography</strong></h4>
+<ul>
+<li>Font principal: System fonts (-apple-system, BlinkMacSystemFont, Segoe UI)</li>
+<li>Ierarhie clară: H1 (2.5rem) → H2 (2rem) → H3 (1.5rem) → p (1rem)</li>
+<li>Line-height: 1.6 pentru lizibilitate</li>
+<li>Letter-spacing ajustat pentru titluri mari</li>
+</ul>
+<h4 id="white-space"><strong>White Space</strong></h4>
+<ul>
+<li>Padding consistent: 2rem pentru containere</li>
+<li>Margin între secțiuni: 4rem</li>
+<li>Gap în grid-uri: 2rem</li>
+<li>Spațiu respiratoriu în carduri: padding 1.5rem</li>
+</ul>
+<hr>
+<h2 id="3-structura-site-ului---descrierea-paginilor">3. Structura Site-ului - Descrierea Paginilor</h2>
+<h3 id="31-pagina-de-acas%C4%83-indexphp">3.1 Pagina de Acasă (<code>index.html</code>)</h3>
+<p><strong>Funcționalitate:</strong></p>
+<ul>
+<li>Prezentare generală a sistemului SmartRain</li>
+<li>Hero section cu call-to-action</li>
+<li>Carousel cu 3 slide-uri despre beneficii</li>
+<li>Secțiune caracteristici (6 carduri)</li>
+<li>Video demonstrativ YouTube (responsive embed)</li>
+<li>Secțiune statistici (4 metrici)</li>
+</ul>
+<p><strong>Elemente interactive:</strong></p>
+<ul>
+<li>Carousel automat (5s interval) + control manual</li>
+<li>Video player YouTube</li>
+<li>Butoane CTA hover effects</li>
+<li>Scroll animations pentru carduri</li>
+</ul>
+<hr>
+<h3 id="32-pagina-despre-desprephp">3.2 Pagina Despre (<code>despre.html</code>)</h3>
+<p><strong>Funcționalitate:</strong></p>
+<ul>
+<li>Prezentare detaliată concept SmartRain</li>
+<li>Misiune și viziune</li>
+<li>Avantaje ecologice și economice (grid 3 col)</li>
+<li>Obiective pe termen scurt/lung (listă)</li>
+<li>Impact și dezvoltare viitoare</li>
+</ul>
+<p><strong>Elemente interactive:</strong></p>
+<ul>
+<li>Carduri hover cu shadow effects</li>
+<li>Iconuri animate la scroll</li>
+<li>Secțiune collapse/expand pentru obiective</li>
+</ul>
+<hr>
+<h3 id="33-pagina-sistem-sistemphp">3.3 Pagina Sistem (<code>sistem.html</code>)</h3>
+<p><strong>Funcționalitate:</strong></p>
+<ul>
+<li>Arhitectură tehnică a sistemului</li>
+<li>Componente hardware (tabel cu 10 elemente)</li>
+<li>Algoritmi de control (PI Control, Fuzzy Logic)</li>
+<li>Flux de operare (6 pași)</li>
+<li>Capabilități AI/ML (6 features)</li>
+<li>Specificații tehnice (4 categorii)</li>
+</ul>
+<p><strong>Elemente interactive:</strong></p>
+<ul>
+<li>Tabel sortabil/filtrable (componente)</li>
+<li>Diagrame flow interactive</li>
+<li>Hover effects pe carduri algoritmi</li>
+</ul>
+<hr>
+<h3 id="34-pagina-monitorizare-monitorizarephp">3.4 Pagina Monitorizare (<code>monitorizare.html</code>)</h3>
+<p><strong>Funcționalitate:</strong></p>
+<ul>
+<li>Dashboard simulat cu metrici în timp real</li>
+<li>Grafice și vizualizări de date</li>
+<li>Parametri monitorizați (nivel apă, umiditate, temperatură)</li>
+<li>Alerte și notificări</li>
+<li>Istoric consumuri</li>
+</ul>
+<p><strong>Elemente interactive:</strong></p>
+<ul>
+<li>Cards cu date dinamice (actualizate)</li>
+<li>Progress bars pentru nivele</li>
+<li>Color-coded alerts (roșu/galben/verde)</li>
+<li>Toggle pentru filtre date</li>
+</ul>
+<hr>
+<h3 id="35-pagina-galerie-galeriephp">3.5 Pagina Galerie (<code>galerie.html</code>)</h3>
+<p><strong>Funcționalitate:</strong></p>
+<ul>
+<li>Galerie foto cu imagini sistem (grid responsiv)</li>
+<li>Filtre categorii (Hardware, Software, Instalare)</li>
+<li>Lightbox pentru vizualizare mărită</li>
+<li>Search în galerie</li>
+</ul>
+<p><strong>Elemente interactive:</strong></p>
+<ul>
+<li>Grid masonry layout (coloane variabile)</li>
+<li>Filtre click (active state)</li>
+<li>Modal lightbox pentru zoom imagini</li>
+<li>Lazy loading pentru performance</li>
+</ul>
+<hr>
+<h3 id="36-pagina-contact-contactphp">3.6 Pagina Contact (<code>contact.html</code>)</h3>
+<p><strong>Funcționalitate:</strong></p>
+<ul>
+<li>Formular contact complet validat</li>
+<li>Informații de contact (adresă, telefon, email, program)</li>
+<li>Hartă Google Maps integrată (Timișoara)</li>
+<li>Secțiune FAQ (5 întrebări frecvente)</li>
+<li>Social media links</li>
+</ul>
+<p><strong>Elemente interactive:</strong></p>
+<ul>
+<li>Validare în timp real (JS + PHP)</li>
+<li>Character counter pentru textarea</li>
+<li>Accordion FAQ (expand/collapse)</li>
+<li>Google Maps iframe interactiv</li>
+<li>Auto-hide alerts după 5s</li>
+</ul>
+<p><strong>Stocare date:</strong></p>
+<ul>
+<li>Mesaje salvate în <code>contact_messages.json</code></li>
+<li>Format: <code>{date, name, email, phone, subject, message}</code></li>
+</ul>
+<hr>
+<h2 id="4-responsive-design---adapt%C4%83ri-pentru-mobil">4. Responsive Design - Adaptări pentru Mobil</h2>
+<h3 id="41-breakpoints-utilizate">4.1 Breakpoints Utilizate</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">/* Mobile First Approach */</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width:</span> <span class="hljs-number">768px</span>) { <span class="hljs-comment">/* Tablets și mobile */</span> }
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width:</span> <span class="hljs-number">480px</span>) { <span class="hljs-comment">/* Mobile phones */</span> }
+</div></code></pre>
+<h3 id="42-elemente-adaptate">4.2 Elemente Adaptate</h3>
+<h4 id="navbar"><strong>Navbar</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: Meniu orizontal, toate elementele vizibile</li>
+<li><strong>Mobile</strong>: Hamburger menu (3 linii), drawer lateral slide-in</li>
+<li><strong>Transformare</strong>: <code>display: flex</code> → <code>display: none</code> + toggle menu</li>
+</ul>
+<h4 id="grid-layouts"><strong>Grid Layouts</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: <code>grid-template-columns: repeat(3, 1fr)</code> (3 coloane)</li>
+<li><strong>Tablet</strong>: <code>grid-template-columns: repeat(2, 1fr)</code> (2 coloane)</li>
+<li><strong>Mobile</strong>: <code>grid-template-columns: 1fr</code> (1 coloană stack)</li>
+</ul>
+<h4 id="typography"><strong>Typography</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: H1 = 2.5rem (40px)</li>
+<li><strong>Mobile</strong>: H1 = 1.75rem (28px)</li>
+<li>Reducere proporțională pentru toate heading-urile</li>
+</ul>
+<h4 id="carousel"><strong>Carousel</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: Slide width 100%, săgeți laterale vizibile</li>
+<li><strong>Mobile</strong>: Swipe gestures, săgeți mai mici, text condensat</li>
+</ul>
+<h4 id="tabel-sistem"><strong>Tabel (Sistem)</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: Tabel clasic cu 4 coloane</li>
+<li><strong>Mobile</strong>: Transformare în carduri stack, o linie pe rând</li>
+</ul>
+<h4 id="footer"><strong>Footer</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: 3 coloane (despre, linkuri, contact)</li>
+<li><strong>Mobile</strong>: 1 coloană stack, centrat</li>
+</ul>
+<h4 id="images"><strong>Images</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: Width fixă (400px)</li>
+<li><strong>Mobile</strong>: Width 100%, height auto (fluid images)</li>
+</ul>
+<h4 id="forms"><strong>Forms</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: Label-uri left-aligned, inputs width 50%</li>
+<li><strong>Mobile</strong>: Full-width inputs, label-uri above</li>
+</ul>
+<h4 id="video-embed"><strong>Video Embed</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: 16:9 ratio, width 800px</li>
+<li><strong>Mobile</strong>: Responsive container, width 100%</li>
+</ul>
+<h4 id="map"><strong>Map</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: Height 450px</li>
+<li><strong>Mobile</strong>: Height 300px, touch gestures enabled</li>
+</ul>
+<h4 id="buttons"><strong>Buttons</strong></h4>
+<ul>
+<li><strong>Desktop</strong>: Padding 1rem 2rem, font-size 1rem</li>
+<li><strong>Mobile</strong>: Padding 0.75rem 1.5rem, font-size 0.9rem, touch-friendly (min 44px height)</li>
+</ul>
+<hr>
+<h2 id="5-func%C8%9Bionalit%C4%83%C8%9Bi-speciale-implementate">5. Funcționalități Speciale Implementate</h2>
+<h3 id="51-search-global">5.1 Search Global</h3>
+<ul>
+<li>Overlay full-screen cu input</li>
+<li>Căutare cross-pages prin JavaScript</li>
+<li>Highlight rezultate găsite</li>
+<li>ESC pentru închidere</li>
+</ul>
+<h3 id="52-darklight-mode">5.2 Dark/Light Mode</h3>
+<ul>
+<li>Toggle salvat în <code>localStorage</code></li>
+<li>Tranziție smooth (0.3s)</li>
+<li>Iconografie adaptată (🌙/☀️)</li>
+<li>CSS variables pentru culori dinamice</li>
+</ul>
+<h3 id="53-scroll-to-top">5.3 Scroll to Top</h3>
+<ul>
+<li>Buton flotant bottom-right</li>
+<li>Apare după scroll &gt; 300px</li>
+<li>Smooth scroll animation</li>
+</ul>
+<h3 id="54-help-button">5.4 Help Button</h3>
+<ul>
+<li>Buton flotant bottom-left (?)</li>
+<li>Click → modal cu ghid utilizare</li>
+<li>Disponibil pe toate paginile</li>
+</ul>
+<h3 id="55-form-validation">5.5 Form Validation</h3>
+<ul>
+<li><strong>Frontend</strong>: JavaScript real-time (blur/input events)</li>
+<li><strong>Backend</strong>: PHP sanitization și validare</li>
+<li>Mesaje eroare specifice în română</li>
+<li>Auto-scroll la primul câmp invalid</li>
+</ul>
+<h3 id="56-google-analytics">5.6 Google Analytics</h3>
+<ul>
+<li>Tracking pageviews, events, user behavior</li>
+<li>Real-time monitoring disponibil</li>
+<li>Configurare G-YFC992KBTC</li>
+</ul>
+<hr>
+<h2 id="6-structura-fi%C8%99ierelor">6. Structura Fișierelor</h2>
+<pre class="hljs"><code><div>proiect/
+├── index.html              # Pagina principală
+├── despre.html             # Despre proiect
+├── sistem.html             # Arhitectură tehnică
+├── monitorizare.html       # Dashboard monitorizare
+├── galerie.html            # Galerie foto
+├── contact.html            # Formular contact
+├── 404.html                # Pagina eroare
+├── verificare.html         # Validare cerințe
+├── contact_messages.json  # Date formular (auto-generated)
+├── css/
+│   ├── style.css          # Stiluri principale (2366 linii)
+│   └── sistem.css         # (Deprecated - integrat în style.css)
+├── js/
+│   ├── script.js          # JavaScript principal
+│   ├── contact.js         # Validare formular (279 linii)
+│   ├── gallery.js         # Galerie interactivă
+│   └── dashboard.js       # Dashboard monitorizare
+├── images/
+│   ├── gallery/           # Poze galerie
+│   └── PLACEHOLDER.txt
+└── .htaccess              # URL rewriting, security
+</div></code></pre>
+<hr>
+<h2 id="7-concluzii">7. Concluzii</h2>
+<p>Site-ul <strong>SmartRain</strong> respectă integral toate principiile moderne de design al interfețelor utilizator, oferind o experiență fluidă, accesibilă și estetică. Implementarea principiilor lui Nielsen asigură usability excelent, iar design-ul responsive garantează funcționalitate pe orice dispozitiv.</p>
+<p>Tehnologiile folosite (HTML5, CSS3, JavaScript, PHP) sunt utilizate eficient pentru a crea un site web performant, securizat și ușor de întreținut.</p>
+<hr>
+<p><strong>Data finalizării:</strong> 20 noiembrie 2025<br>
+<strong>Versiune:</strong> 1.0<br>
+<strong>Contact:</strong> patrysimedre1@gmail.com</p>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+?>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRain - Sistem Inteligent de Colectare a Apei de Ploaie</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFC992KBTC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YFC992KBTC');
+    </script>
+</head>
+<body>
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-cloud-rain"></i>
+                <span>SmartRain</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Acasă</a></li>
+                <li><a href="despre.html">Despre</a></li>
+                <li><a href="sistem.html">Sistem</a></li>
+                <li><a href="monitorizare.html">Monitorizare</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Schimbă tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="search-toggle" id="searchToggle" title="Căutare">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Caută în site..." autocomplete="off">
+            <button class="search-close" id="searchClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Carousel -->
+    <section class="hero">
+        <div class="carousel" id="carousel">
+            <div class="carousel-slide active">
+                <img src="images/hero1.jpg" alt="Sistem de colectare a apei de ploaie">
+                <div class="carousel-caption">
+                    <h1>SmartRain</h1>
+                    <p>Sistem Automatizat de Colectare și Filtrare a Apei de Ploaie</p>
+                    <a href="despre.html" class="btn btn-primary">Descoperă mai mult</a>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/hero2.jpg" alt="Tehnologie IoT">
+                <div class="carousel-caption">
+                    <h1>Tehnologie IoT Avansată</h1>
+                    <p>Control inteligent bazat pe ESP32 și senzori de calitate</p>
+                    <a href="sistem.html" class="btn btn-primary">Vezi sistemul</a>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/hero3.jpg" alt="Sustenabilitate">
+                <div class="carousel-caption">
+                    <h1>Sustenabilitate Urbană</h1>
+                    <p>Reducerea consumului de apă potabilă prin soluții inteligente</p>
+                    <a href="monitorizare.html" class="btn btn-primary">Monitorizare</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control prev" id="carouselPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-control next" id="carouselNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="carousel-indicators" id="carouselIndicators"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Caracteristici Principale</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Control Automat</h3>
+                    <p>Sistem bazat pe ESP32 cu algoritmi de control PI și fuzzy pentru decizii autonome în timp real.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Filtrare Avansată</h3>
+                    <p>Monitorizare continuă a calității apei prin senzori de turbiditate și conductivitate (TDS).</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Inteligență Artificială</h3>
+                    <p>Module AI pentru analiză predictivă și optimizarea utilizării resurselor de apă.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun-rain"></i>
+                    </div>
+                    <h3>Integrare Meteo</h3>
+                    <p>Adaptare automată bazată pe condițiile meteorologice curente și prognozate.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Monitorizare Web</h3>
+                    <p>Interfață web intuitivă pentru control și vizualizare în timp real a datelor sistemului.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Contribuie la dezvoltarea durabilă prin reducerea consumului de apă potabilă.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-tint"></i>
+                    <h3 class="stat-number" data-target="5000">0</h3>
+                    <p>Litri economisiți/lună</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3 class="stat-number" data-target="95">0</h3>
+                    <p>% Eficiență filtrare</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3 class="stat-number" data-target="24">0</h3>
+                    <p>Ore monitorizare/zi</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3 class="stat-number" data-target="30">0</h3>
+                    <p>% Reducere costuri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Cum Funcționează</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-cloud-showers-heavy"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>1. Colectare</h3>
+                        <p>Sistemul detectează ploaia și începe procesul de colectare automată în rezervor.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2. Analiză Calitate</h3>
+                        <p>Senzorii măsoară turbiditatea și conductivitatea pentru a evalua calitatea apei.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>3. Filtrare</h3>
+                        <p>Dacă calitatea o permite, apa trece prin sistemul de filtrare fizică.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>4. Utilizare</h3>
+                        <p>Apa filtrată este gata pentru utilizări precum irigare sau spălare.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Începe Să Economisești Apă Astăzi</h2>
+            <p>Contactează-ne pentru mai multe informații despre implementarea sistemului SmartRain</p>
+            <a href="contact.html" class="btn btn-light">Contactează-ne</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SmartRain</h4>
+                    <p>Sistem automatizat pentru colectarea și filtrarea inteligentă a apei de ploaie în mediul urban.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Link-uri Rapide</h4>
+                    <ul>
+                        <li><a href="index.html">Acasă</a></li>
+                        <li><a href="despre.html">Despre</a></li>
+                        <li><a href="sistem.html">Sistem</a></li>
+                        <li><a href="monitorizare.html">Monitorizare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@smartrain.ro</li>
+                        <li><i class="fas fa-phone"></i> +40 123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> București, România</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Abonează-te pentru actualizări</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email-ul tău" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2025 SmartRain. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" title="Sus">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Help Button -->
+    <button class="help-btn" id="helpBtn" title="Ajutor">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Ajutor</h2>
+            <div class="help-content">
+                <h3>Navigare</h3>
+                <p>Folosește meniul de navigare pentru a explora diferitele secțiuni ale site-ului.</p>
+                <h3>Căutare</h3>
+                <p>Apasă pe iconița de căutare pentru a căuta informații în site.</p>
+                <h3>Temă</h3>
+                <p>Folosește butonul de temă pentru a comuta între modul light și dark.</p>
+                <h3>Contact</h3>
+                <p>Pentru întrebări, vizitează pagina de <a href="contact.html">Contact</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
