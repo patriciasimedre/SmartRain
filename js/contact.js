@@ -171,6 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // ===================================
         
         contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
             // Validate all fields
             const isNameValid = validateName();
             const isEmailValid = validateEmail();
@@ -190,9 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // If any validation fails, prevent submit
             if (!isNameValid || !isEmailValid || !isPhoneValid || !isSubjectValid || !isMessageValid || !isPrivacyValid) {
-                e.preventDefault();
-                
-                console.log('Form validation failed - preventing submit');
+                console.log('Form validation failed');
                 
                 // Scroll to first error
                 const firstError = contactForm.querySelector('.form-error:not(:empty)');
@@ -203,10 +203,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 return false;
             }
             
-            console.log('Form validation passed - allowing submit to PHP');
+            console.log('Form validation passed - displaying success message');
             
-            // If JavaScript validation passes, allow form to submit normally to PHP
-            return true;
+            // Show success message
+            const messageDiv = document.getElementById('contactMessage');
+            messageDiv.className = 'alert alert-success';
+            messageDiv.style.display = 'block';
+            messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> Mulțumim! Mesajul dumneavoastră a fost trimis cu succes. Vă vom contacta în cel mai scurt timp.';
+            
+            // Scroll to message
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset border colors
+            nameInput.style.borderColor = '';
+            emailInput.style.borderColor = '';
+            phoneInput.style.borderColor = '';
+            subjectSelect.style.borderColor = '';
+            messageTextarea.style.borderColor = '';
+            
+            // Update char count
+            updateCharCount();
+            
+            // Auto-hide message after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.transition = 'all 0.5s ease';
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transform = 'translateY(-20px)';
+                
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                    messageDiv.style.opacity = '1';
+                    messageDiv.style.transform = 'translateY(0)';
+                }, 500);
+            }, 5000);
+            
+            return false;
         });
         
         // ===================================

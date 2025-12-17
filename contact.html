@@ -1,97 +1,3 @@
-
-// Handle form submission
-$message = '';
-$messageType = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = htmlspecialchars(trim($_POST['name'] ?? ''));
-    $email = htmlspecialchars(trim($_POST['email'] ?? ''));
-    $phone = htmlspecialchars(trim($_POST['phone'] ?? ''));
-    $subject = htmlspecialchars(trim($_POST['subject'] ?? ''));
-    $messageText = htmlspecialchars(trim($_POST['message'] ?? ''));
-    
-    // Basic validation
-    $errors = [];
-    
-    if (empty($name)) {
-        $errors[] = "Numele este obligatoriu.";
-    }
-    
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Email-ul este invalid.";
-    }
-    
-    if (!empty($phone) && !preg_match('/^[0-9+\-\s()]+$/', $phone)) {
-        $errors[] = "Numărul de telefon este invalid.";
-    }
-    
-    if (empty($subject)) {
-        $errors[] = "Subiectul este obligatoriu.";
-    }
-    
-    if (empty($messageText)) {
-        $errors[] = "Mesajul este obligatoriu.";
-    }
-    
-    if (empty($errors)) {
-        // Save message to file
-        $messageData = [
-            'date' => date('Y-m-d H:i:s'),
-            'name' => $name,
-            'email' => $email,
-            'phone' => $phone,
-            'subject' => $subject,
-            'message' => $messageText
-        ];
-        
-        $logFile = __DIR__ . '/contact_messages.json';
-        $messages = [];
-        
-        if (file_exists($logFile)) {
-            $content = file_get_contents($logFile);
-            $messages = json_decode($content, true) ?? [];
-        }
-        
-        $messages[] = $messageData;
-        $result = file_put_contents($logFile, json_encode($messages, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-        
-        if ($result === false) {
-            $errors[] = "Eroare la salvarea mesajului. Verificați permisiunile directorului.";
-        }
-        if ($result === false) {
-            $errors[] = "Eroare la salvarea mesajului. Verificați permisiunile directorului.";
-        }
-        
-        if (empty($errors)) {
-            // Send email (requires mail configuration)
-            $to = "contact@smartrain.ro";
-            $emailSubject = "Contact SmartRain: " . $subject;
-            $emailBody = "Nume: $name\n";
-            $emailBody .= "Email: $email\n";
-            $emailBody .= "Telefon: $phone\n\n";
-            $emailBody .= "Subiect: $subject\n\n";
-            $emailBody .= "Mesaj:\n$messageText\n";
-            $headers = "From: $email\r\n";
-            $headers .= "Reply-To: $email\r\n";
-            $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-            
-            // Uncomment when mail server is configured
-            // mail($to, $emailSubject, $emailBody, $headers);
-            
-            $message = "Mulțumim! Mesajul dumneavoastră a fost trimis cu succes. Vă vom contacta în cel mai scurt timp.";
-            $messageType = 'success';
-            
-            // Clear form data after success
-            $_POST = [];
-        }
-    }
-    
-    if (!empty($errors)) {
-        $message = implode('<br>', $errors);
-        $messageType = 'error';
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -163,11 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
-            <?php if ($message): ?>
-            <div class="alert alert-<?php echo $messageType; ?>">
-                <?php echo $message; ?>
-            </div>
-            <?php endif; ?>
+            <div id="contactMessage" class="alert" style="display: none;"></div>
 
             <div class="contact-grid">
                 <!-- Contact Form -->
